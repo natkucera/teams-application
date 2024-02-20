@@ -9,7 +9,7 @@ const TeamDetailsPage = ({ team }) => {
 
   return (
     <div>
-      <h1>Team Details</h1>
+      <h1>TEAM DETAILS</h1>
       {team ? (
         <div>
           <p>Name: {team.name}</p>

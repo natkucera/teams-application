@@ -24,8 +24,8 @@ const TeamsPage = ({teams}) => {
 
   return (
     <div>
-      <h1>Teams</h1>
-        <ul>
+      <h1>TEAMS</h1>
+        <ul className='view-teams'>
           {teams.map((team) => (
             <li key={team.id} onClick={() => handleTeamClick(team.id)}>{team.name}</li>
           ))}

@@ -35,7 +35,7 @@ const InvitationForm = ({ teamId }) => {
             Email:
             <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
         </label>
-        <button type="submit">Send Invitation</button>
+        <button className='button sendinvitebtn'>Send Invitation</button>
         </form>
     </div>
 
