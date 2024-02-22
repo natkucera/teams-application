@@ -1,7 +1,6 @@
 import { getSession, useSession } from 'next-auth/react'
-import SignOutButton from '../components/SignOutButton';
+import LogoutButton from './LogoutButton'
 import Link from 'next/link';
-import defaultProfilePicture from "../public/Default.jpg";
 import { useRouter } from 'next/router';
 import Image from "next/image";
 
@@ -9,6 +8,7 @@ import Image from "next/image";
 export default function Sidebar() {
   const { data: session, status } = useSession();
   const router = useRouter();
+  
 
   if (status === 'loading') {
     return <div>Loading...</div>
@@ -23,16 +23,23 @@ export default function Sidebar() {
 
         <div className='user'>
             {session?.user?.image ? (
-              <img src={session?.user.image} alt="" className="avatar"/>
+              <img 
+                src={session.user.image}
+                alt=""
+                className="avatar"
+                onError={(e) => {
+                  e.target.onerror = null
+                  e.target.src = 'images/Default.jpg'
+                }}/>
             ) : (
-              <img src={defaultProfilePicture} alt="Default Picture"/>
+              <img src='/images/Default.jpg' alt="Default Picture"/>
             )}
             <div className='welcome'>
               <p>Welcome, <br/><span className='username'>{session?.user.name}!</span></p>
             </div>
         </div>
 
-        <hr/>
+        <hr className='sidebar-break'/>
 
         <div className='navigation'>
             <ul className='links'>
@@ -85,9 +92,9 @@ export default function Sidebar() {
                   SETTINGS</Link>
               </li>
             </ul>
-            <hr/>
+            <hr className='sidebar-break'/>
             <div className='logout'>
-                <SignOutButton />
+                <LogoutButton />
             </div>
         </div>
     </div>
@@ -101,7 +108,7 @@ export async function getServerSideProps(context) {
   if (!session) {
     return {
       redirect: {
-        destination: '/signin',
+        destination: '/login',
         permanent: false,
       },
     };

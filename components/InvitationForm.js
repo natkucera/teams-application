@@ -5,14 +5,13 @@ import { useSession } from 'next-auth/react';
 const InvitationForm = ({ teamId }) => {
 
     const { data: session } = useSession();
+    const [email, setEmail] = useState('');
 
     if (!session) {
         // Redirect to the login page or handle accordingly
         console.error('User is not authenticated. Redirect to login.');
         return;
       }
-
-  const [email, setEmail] = useState('');
 
   const handleInvite = async (e) => {
     e.preventDefault();
@@ -29,11 +28,10 @@ const InvitationForm = ({ teamId }) => {
 
   return (
     <div className='invite-section'>
-        <p>Send an invite:</p>
+        <p className='invite-members'>INVITE MEMBERS:</p>
         <form onSubmit={handleInvite}>
         <label>
-            Email:
-            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required placeholder='name@email.com'/>
         </label>
         <button className='button sendinvitebtn'>Send Invitation</button>
         </form>
