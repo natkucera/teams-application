@@ -6,6 +6,8 @@
     "dev": "next dev",
     "build": "prisma generate && next build",
     "start": "next start",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "lint": "next lint",
     "devStart": "nodemon script.ts"
   },
@@ -23,6 +25,7 @@
     "@svgr/webpack": "^8.1.0",
     "@types/node": "^20.11.5",
     "@types/react": "18.2.17",
+    "gh-pages": "^6.1.1",
     "prisma": "^5.8.1",
     "typescript": "5.1.6"
   }
