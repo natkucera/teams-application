@@ -43,7 +43,7 @@ const TeamDetailsPage = ({ team, users }) => {
   );
 };
 
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
     const { teamId } = context.query;
 
     try {
